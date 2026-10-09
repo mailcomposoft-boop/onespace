@@ -31,13 +31,13 @@ jobs:
       id-token: write
       actions: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
 
       # Зависимости — чтобы Claude мог собрать сайт и проверить, что ничего не сломал
       # (npm install, а не npm ci: package-lock.json в репозитории пока нет)
