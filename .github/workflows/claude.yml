@@ -38,10 +38,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       # Зависимости — чтобы Claude мог собрать сайт и проверить, что ничего не сломал
-      - run: npm ci
+      # (npm install, а не npm ci: package-lock.json в репозитории пока нет)
+      - run: npm install --no-audit --no-fund
 
       - uses: anthropics/claude-code-action@v1
         with:
@@ -51,4 +51,4 @@ jobs:
           # anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           claude_args: |
             --max-turns 40
-            --allowedTools "Edit,Write,Read,Glob,Grep,Bash(npm run build),Bash(npm ci),Bash(git:*)"
+            --allowedTools "Edit,Write,Read,Glob,Grep,Bash(npm run build),Bash(npm install),Bash(git:*)"
