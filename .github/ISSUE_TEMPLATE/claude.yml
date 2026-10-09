@@ -1,0 +1,36 @@
+name: Задача для Claude
+description: Правка текста, новая страница, статья или доработка — Claude сделает pull request
+title: "@claude "
+labels: ["claude"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Опишите задачу словами. Claude прочитает её, внесёт изменения в отдельной ветке и откроет pull request.
+        На сайт правки попадут только после того, как вы проверите и сольёте pull request.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Что нужно
+      options:
+        - Поправить текст на странице
+        - Новая продуктовая страница
+        - Новая статья в блог
+        - Хедер, футер, меню или попапы
+        - Исправить ошибку на сайте
+        - Новый блок или доработка вёрстки
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Страница
+      description: Адрес или название — например, /ai-bez-utechki или «главная»
+  - type: textarea
+    id: task
+    attributes:
+      label: Задача
+      description: Что поменять и как должно быть. Можно приложить скриншот.
+      placeholder: "@claude на странице AI без утечки добавь в FAQ вопрос про стоимость лицензии"
+    validations:
+      required: true
