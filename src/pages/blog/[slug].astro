@@ -1,0 +1,53 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, all: posts } }));
+}
+
+const { post, all } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const date = d.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+const related = all
+  .filter((p) => p.id !== post.id && p.data.tags.some((t) => d.tags.includes(t)))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+<Base seo={{ title: `${d.title} — Compo OneSpace`, description: d.description, og_image: d.cover }} active="/blog" extraCss="/styles/blog.css">
+  <article class="bl-post">
+    <a class="bl-back" href="/blog">← Все статьи</a>
+    <div class="bl-meta">
+      <time datetime={d.date.toISOString()}>{date}</time>
+      <span>·</span>
+      <span>{d.author}</span>
+    </div>
+    <h1 class="os-h1 bl-title">{d.title}</h1>
+    <p class="os-lead">{d.description}</p>
+    {d.tags.length > 0 && (
+      <div class="bl-tags">{d.tags.map((t) => <a class="bl-tag" href={`/blog/tag/${encodeURIComponent(t)}`}>{t}</a>)}</div>
+    )}
+    {d.cover && <img class="bl-cover" src={d.cover} alt="" />}
+    <div class="os-prose bl-body"><Content /></div>
+  </article>
+
+  {related.length > 0 && (
+    <section class="os-sec">
+      <div class="os-kicker">Читайте также</div>
+      <div class="bl-grid">{related.map((p) => <PostCard post={p} />)}</div>
+    </section>
+  )}
+
+  <section class="os-sec os-sec--last">
+    <div class="bl-cta">
+      <div>
+        <div class="bl-cta__t">Покажем OneSpace на ваших задачах</div>
+        <div class="bl-cta__d">Демо на нашем собственном рабочем контуре — с живыми проектами и данными.</div>
+      </div>
+      <a class="os-btn" href="#popup:demo">Обсудить вашу задачу →</a>
+    </div>
+  </section>
+</Base>

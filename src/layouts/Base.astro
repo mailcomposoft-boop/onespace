@@ -1,0 +1,58 @@
+---
+import site from '../content/site.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Popups from '../components/Popups.astro';
+
+interface Props {
+  seo: { title: string; description: string; og_image?: string };
+  active?: string;
+  pageData?: Record<string, unknown> | null;
+  extraCss?: string;
+}
+const { seo, active = '', pageData = {}, extraCss } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const og = seo.og_image ? new URL(seo.og_image, Astro.site).href : undefined;
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={canonical} />
+    {og && <meta property="og:image" content={og} />}
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles/header.css" />
+    <link rel="stylesheet" href="/styles/os.css" />
+    <link rel="stylesheet" href="/styles/footer.css" />
+    {extraCss && <link rel="stylesheet" href={extraCss} />}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <style is:global>html, body { margin: 0; padding: 0; background: #F5F8FC; }</style>
+  </head>
+  <body>
+    <Header active={active} />
+    <main class="os-page">
+      <div class="os-wrap">
+        <slot />
+      </div>
+    </main>
+    <Footer />
+    <Popups />
+
+    <script is:inline type="application/json" id="os-data" set:html={JSON.stringify(pageData || {})}></script>
+    <script is:inline define:vars={{ endpoint: site.form_endpoint }}>window.OS_FORM_ENDPOINT = endpoint;</script>
+    <script is:inline src="/scripts/header.js"></script>
+    <script is:inline src="/scripts/page.js"></script>
+    <script is:inline src="/scripts/popup.js"></script>
+    <script is:inline src="/scripts/os-form.js"></script>
+  </body>
+</html>

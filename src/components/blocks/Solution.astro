@@ -1,0 +1,22 @@
+---
+const { title, text, callout, items = [] } = Astro.props;
+---
+<section class="os-sec os-reveal" data-block="03">
+  <div class="os-split--solution">
+    <div>
+      <div class="os-kicker">Решение</div>
+      <h2 class="os-h2" style="max-width:20ch;margin-bottom:20px">{title}</h2>
+      <p style="font-size:16px;line-height:1.65;color:#5B6B8C;margin:0 0 24px;text-wrap:pretty">{text}</p>
+      {callout && <div class="os-callout">{callout}</div>}
+    </div>
+    <div class="os-g2">
+      {items.map((it) => (
+        <div class="os-card">
+          <div class="os-tag">{it.tag}</div>
+          <div style="font-family:'Manrope',sans-serif;font-size:17px;font-weight:700;letter-spacing:-.015em;margin-bottom:8px">{it.title}</div>
+          <div class="os-text">{it.text}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+import site from '../content/site.json';
+---
+<footer class="cs-ftr">
+  <div class="cs-ftr__in">
+    <div class="cs-ftr__cols">
+      <div>
+        <div class="cs-ftr__cap">Compo OneSpace</div>
+        <div class="cs-ftr__list">{site.nav.map((n) => <a href={n.href}>{n.label}</a>)}</div>
+      </div>
+      <div>
+        <div class="cs-ftr__cap">Другие наши продукты</div>
+        <div class="cs-ftr__list">{site.products.map((n) => <a href={n.href}>{n.label}</a>)}</div>
+      </div>
+      <div>
+        <div class="cs-ftr__cap">О нас</div>
+        <div class="cs-ftr__list">{site.about.concat(site.nav_extra || []).map((n) => <a href={n.href}>{n.label}</a>)}</div>
+      </div>
+      <div>
+        <div class="cs-ftr__cap">Инструменты</div>
+        <div class="cs-ftr__list">{site.tools.map((n) => <a href={n.href}>{n.label}</a>)}</div>
+      </div>
+      <div>
+        <div class="cs-ftr__cap">Контакты</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a class="cs-ftr__phone" href={site.phone_href}>{site.phone}</a>
+          <a class="cs-ftr__mail" href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+        <div class="cs-ftr__addr">{site.addresses.map((a) => <div>{a}</div>)}</div>
+      </div>
+    </div>
+
+    <div class="cs-ftr__badges">
+      {site.badges.map((b) => (b.href
+        ? <a class="cs-ftr__badge" href={b.href}>{b.label}</a>
+        : <span class="cs-ftr__badge">{b.label}</span>))}
+    </div>
+
+    <div class="cs-ftr__legal">
+      <div class="cs-ftr__legalcol">
+        <div>Сайт использует cookie для анализа поведения пользователей. Ознакомьтесь с <a href={site.agreement_url}>пользовательским соглашением</a>, <a href={site.privacy_url}>политикой обработки персональных данных</a> и <a href={site.consent_url}>согласием на обработку персональных данных</a>. Продолжая пользоваться сайтом, вы соглашаетесь с использованием файлов cookie.</div>
+        <div class="cs-ftr__docs">
+          <a href="https://www.compo.ru/services/accreditation/">Сведения об аккредитованной ИТ-компании</a>
+          <a href="https://www.compo.ru/services/documentation/">Техническая и юридическая документация</a>
+        </div>
+      </div>
+      <div class="cs-ftr__legalcol">{site.legal.map((l) => <div>{l}</div>)}</div>
+    </div>
+  </div>
+</footer>

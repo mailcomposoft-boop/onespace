@@ -1,0 +1,31 @@
+---
+import { linkHref } from '../../lib/link.js';
+const { kicker, title, text, results_title = 'Что получите на выходе', results = [], cta, cta_action = 'popup:pilot', cta_url = '' } = Astro.props;
+---
+<section class="os-sec os-reveal" data-block="04">
+  <div class="os-dark">
+    <div class="os-glow"></div>
+    <div class="os-wrap-inner os-poc" style="padding:52px;position:relative">
+      <div>
+        <div class="os-kicker" style="display:inline-flex;align-items:center;gap:9px;color:#AFC2E8;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;margin-bottom:24px">
+          <span class="os-pulse" style="width:7px;height:7px;border-radius:50%;background:#4DA2FF"></span>
+          {kicker}
+        </div>
+        <h2 style="font-family:'Manrope',sans-serif;font-size:36px;line-height:1.1;letter-spacing:-.03em;font-weight:800;margin:0 0 18px;color:#fff;max-width:22ch;text-wrap:pretty">{title}</h2>
+        <p style="font-size:16.5px;line-height:1.65;color:#C7D6F0;margin:0;max-width:52ch;text-wrap:pretty">{text}</p>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:26px">
+        <div class="os-mono" style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#8FA6D6;margin-bottom:18px">{results_title}</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          {results.map((r) => (
+            <div class="os-check">
+              <span class="os-check__i" style="background:rgba(255,255,255,.14);color:#8CE0B4">✓</span>
+              <span style="font-size:13.5px;line-height:1.55;color:#DCE6F7">{r}</span>
+            </div>
+          ))}
+        </div>
+        {cta && <a class="os-btn os-btn--white os-btn--sm" href={linkHref(cta_action, cta_url, '#popup:pilot')} style="margin-top:22px">{cta} →</a>}
+      </div>
+    </div>
+  </div>
+</section>

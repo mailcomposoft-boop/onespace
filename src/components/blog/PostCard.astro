@@ -1,0 +1,15 @@
+---
+const { post } = Astro.props;
+const d = post.data;
+const date = d.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<a class="bl-card" href={`/blog/${post.id}`}>
+  <div class="bl-card__cover">
+    {d.cover ? <img src={d.cover} alt="" loading="lazy" /> : <span class="bl-card__ph"></span>}
+  </div>
+  <div class="bl-card__body">
+    <div class="bl-meta"><time datetime={d.date.toISOString()}>{date}</time>{d.tags[0] && <><span>·</span><span>{d.tags[0]}</span></>}</div>
+    <div class="bl-card__t">{d.title}</div>
+    <div class="bl-card__d">{d.description}</div>
+  </div>
+</a>

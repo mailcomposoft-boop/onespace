@@ -1,0 +1,17 @@
+---
+const { title, items = [] } = Astro.props;
+const n = (i) => String(i + 1).padStart(2, '0');
+---
+<section class="os-sec os-reveal" data-block="02">
+  <div class="os-kicker">Проблема</div>
+  <h2 class="os-h2" style="margin-bottom:32px">{title}</h2>
+  <div class="os-g3">
+    {items.map((it, i) => (
+      <div class="os-pain">
+        <div class="os-pain__n">{n(i)}</div>
+        <div class="os-h3">{it.title}</div>
+        <div class="os-text">{it.text}</div>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,10 @@
+---
+import { marked } from 'marked';
+const { kicker, title, body = '' } = Astro.props;
+const html = marked.parse(body);
+---
+<section class="os-sec os-reveal">
+  {kicker && <div class="os-kicker">{kicker}</div>}
+  {title && <h2 class="os-h2" style="margin-bottom:24px">{title}</h2>}
+  <div class="os-prose" set:html={html} />
+</section>

@@ -1,0 +1,24 @@
+---
+import FormFields from '../FormFields.astro';
+const { kicker, title, text, steps = [], chips = [], success, formName = '' } = Astro.props;
+---
+<section class="os-sec os-sec--last os-reveal" id="zayavka">
+  <div class="os-card os-card--lg os-split--form">
+    <div>
+      <div class="os-kicker os-kicker--pill" style="margin-bottom:22px">{kicker}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-size:44px;line-height:1.08;letter-spacing:-.035em;font-weight:800;margin:0 0 20px;max-width:17ch;text-wrap:pretty">{title}</h2>
+      <p style="font-size:16.5px;line-height:1.6;color:#5B6B8C;margin:0 0 32px;max-width:46ch;text-wrap:pretty">{text}</p>
+      <div class="os-steps">
+        {steps.map((s, i) => (
+          <div class="os-step"><span class="os-step__n">{i + 1}</span><span class="os-step__t">{s}</span></div>
+        ))}
+      </div>
+      {chips.length > 0 && (
+        <div style="border-top:1px solid #E3E8F1;padding-top:20px;display:flex;flex-wrap:wrap;gap:10px">
+          {chips.map((c) => <span class="os-chip os-chip--light">{c}</span>)}
+        </div>
+      )}
+    </div>
+    <FormFields kicker={kicker} formName={formName} success={success} />
+  </div>
+</section>

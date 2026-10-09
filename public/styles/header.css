@@ -1,0 +1,44 @@
+.cs-hdr *{box-sizing:border-box}
+.cs-hdr{position:sticky;top:0;z-index:9000;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid #E3E8F1;font-family:'Inter',system-ui,-apple-system,sans-serif;color:#0B1D3A}
+.cs-hdr__in{max-width:1280px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:12px;height:80px}
+.cs-hdr__logo{display:flex;align-items:center;flex-shrink:0}
+.cs-hdr__logo img{height:34px;width:auto;display:block}
+.cs-hdr__nav{display:flex;align-items:center;gap:2px;margin-right:auto}
+.cs-hdr__link{display:flex;align-items:center;gap:6px;padding:9px 7px;border-radius:9px;font-size:13.5px;font-weight:600;color:#0B1D3A;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+.cs-hdr__link:hover,.cs-hdr__link.is-active{background:#F1F6FD;color:#0077FF}
+.cs-hdr__dot{width:7px;height:7px;flex:0 0 7px;border-radius:2px;transform:rotate(45deg);background:#C3CDDE}
+.cs-hdr__link:hover .cs-hdr__dot,.cs-hdr__link.is-active .cs-hdr__dot{background:#0077FF}
+.cs-hdr__drop{position:relative;display:flex;align-items:center}
+.cs-hdr__dropbtn{display:flex;align-items:center;gap:5px;background:transparent;border:0;padding:9px 8px;border-radius:9px;font:inherit;font-size:13.5px;font-weight:600;color:#0B1D3A;cursor:pointer;white-space:nowrap}
+.cs-hdr__drop.is-open .cs-hdr__dropbtn{background:#F1F6FD;color:#0077FF}
+.cs-hdr__caret{font-size:9px;color:#8B96AD;transition:transform .15s}
+.cs-hdr__drop.is-open .cs-hdr__caret{transform:rotate(180deg);color:#0077FF}
+.cs-hdr__panel{position:absolute;top:100%;left:0;padding-top:12px;width:360px;display:none}
+.cs-hdr__drop.is-open .cs-hdr__panel{display:block;animation:csRise .18s ease-out both}
+.cs-hdr__panelin{background:#fff;border:1px solid #E3E8F1;border-radius:16px;padding:12px;box-shadow:0 24px 56px rgba(11,29,58,.16)}
+.cs-hdr__item{display:block;padding:11px 14px;border-radius:10px;text-decoration:none;transition:background .12s}
+.cs-hdr__item:hover{background:#F1F6FD}
+.cs-hdr__itemt{display:block;font-size:14px;font-weight:600;color:#0B1D3A;margin-bottom:3px}
+.cs-hdr__itemd{display:block;font-size:12px;line-height:1.45;color:#8B96AD}
+.cs-hdr__cta{background:#0077FF;color:#fff;padding:13px 22px;border-radius:10px;font-weight:600;font-size:14.5px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:transform .15s}
+.cs-hdr__cta:hover{transform:translateY(-1px);color:#fff}
+.cs-hdr__burger{display:none;width:44px;height:44px;margin-left:auto;background:transparent;border:1px solid #E3E8F1;border-radius:10px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.cs-hdr__burger span{display:block;width:18px;height:2px;background:#0B1D3A;border-radius:2px;transition:transform .2s,opacity .2s}
+.cs-hdr.is-mobopen .cs-hdr__burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.cs-hdr.is-mobopen .cs-hdr__burger span:nth-child(2){opacity:0}
+.cs-hdr.is-mobopen .cs-hdr__burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.cs-hdr__mob{display:none;border-top:1px solid #E3E8F1;background:#fff;padding:16px 20px 24px}
+.cs-hdr.is-mobopen .cs-hdr__mob{display:block}
+.cs-hdr__mob a{display:block;padding:14px 4px;font-size:16px;font-weight:600;color:#0B1D3A;text-decoration:none;border-bottom:1px solid #F0F4FA}
+.cs-hdr__mob a:last-of-type{border-bottom:0}
+.cs-hdr__mobcta{display:block;margin-top:16px;background:#0077FF;color:#fff !important;text-align:center;padding:16px;border-radius:12px;font-size:16px;font-weight:600;text-decoration:none;border:0 !important}
+.cs-hdr__mobcap{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8B96AD;padding:14px 4px 6px}
+@keyframes csRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:1100px){
+  .cs-hdr{position:fixed;top:0;left:0;right:0;width:100%}
+  .cs-hdr__in{padding:0 20px;height:68px}
+  .cs-hdr__nav,.cs-hdr__cta{display:none}
+  .cs-hdr__burger{display:flex}
+  .cs-hdr__logo img{height:28px}
+  .cs-hdr__mob{max-height:calc(100vh - 68px);overflow-y:auto}
+}

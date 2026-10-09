@@ -1,0 +1,53 @@
+---
+import { linkHref } from '../../lib/link.js';
+const { title, cta_title, cta_text, cta_button, cta_action = 'popup:calc', cta_url = '' } = Astro.props;
+---
+<section class="os-sec os-reveal" id="instrument" data-block="07">
+  <div data-os-calc>
+    <div class="os-kicker">Калькулятор выгод</div>
+    <h2 class="os-h2" data-os-calc-title>{title}</h2>
+    <p style="font-size:16px;line-height:1.6;color:#5B6B8C;margin:0 0 28px;max-width:60ch" data-os-calc-desc></p>
+
+    <div class="os-tabs" style="margin-bottom:24px" data-os-calc-tabs></div>
+
+    <div class="os-split--interactive">
+      <div class="os-tool" style="padding:28px 26px">
+        <div class="os-tool__h"><span class="os-tool__n">1</span>Параметры компании</div>
+        <div class="os-tool__sub" data-os-calc-desc2></div>
+        <div data-os-calc-fields></div>
+        <div style="border-top:1px solid #E3E8F1;padding-top:18px">
+          <button type="button" class="os-method" data-os-calc-method>Как мы считаем — методика</button>
+          <div class="os-methodbox" data-os-calc-methodbox></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="os-res">
+          <div class="os-res__lb" data-os-calc-totallabel></div>
+          <div class="os-res__val"><span data-os-calc-total>0</span><span class="os-res__unit">₽ / год</span></div>
+          <div class="os-res__sub" data-os-calc-totalsub></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px" data-os-calc-cards></div>
+
+        <div class="os-card" style="padding:22px 24px;border-radius:14px">
+          <div data-os-calc-bars></div>
+          <div class="os-payback">
+            <span data-os-calc-paybacklead></span>
+            <b class="os-mono" style="color:#0B1D3A;white-space:nowrap" data-os-calc-paybackvalue></b>
+          </div>
+          <div style="display:none;font-size:12.5px;line-height:1.65;color:#5B6B8C;margin-top:14px;padding-top:14px;border-top:1px solid #E9EEF7" data-os-calc-extra></div>
+        </div>
+
+        <div class="os-cta-inline">
+          <div style="max-width:58%">
+            <div style="font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;margin-bottom:5px">{cta_title}</div>
+            <div style="font-size:13px;color:#5B6B8C;line-height:1.55">{cta_text}</div>
+          </div>
+          <a class="os-btn os-btn--sm" href={linkHref(cta_action, cta_url, '#popup:calc')}>{cta_button} →</a>
+        </div>
+        <div class="os-note" style="margin-top:14px">Расчёт носит оценочный характер и не является офертой.</div>
+      </div>
+    </div>
+  </div>
+</section>

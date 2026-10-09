@@ -1,0 +1,18 @@
+---
+// Общие тематические попапы с формой. Открываются кнопками со ссылкой #popup:<id>.
+// Тексты и состав — в CMS: «Общие блоки → Попапы».
+import site from '../content/site.json';
+import FormFields from './FormFields.astro';
+const popups = site.popups || [];
+---
+{popups.map((p) => (
+  <dialog class="os-pop" id={`popup:${p.id}`} aria-labelledby={`popup-${p.id}-t`}>
+    <button type="button" class="os-pop__x" data-os-pop-close aria-label="Закрыть">✕</button>
+    <div class="os-pop__head">
+      {p.kicker && <div class="os-kicker os-kicker--pill" style="margin-bottom:16px">{p.kicker}</div>}
+      <div class="os-pop__t" id={`popup-${p.id}-t`}>{p.title}</div>
+      {p.text && <div class="os-pop__d">{p.text}</div>}
+    </div>
+    <FormFields formName={p.form_name || p.title} success={p.success} />
+  </dialog>
+))}

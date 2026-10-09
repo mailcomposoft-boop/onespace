@@ -1,0 +1,20 @@
+---
+const { title, note, items = [] } = Astro.props;
+---
+<section class="os-sec os-reveal" data-block="09">
+  <div class="os-split--faq">
+    <div>
+      <div class="os-kicker">FAQ</div>
+      <h2 class="os-h2 os-h2--sm" style="margin-bottom:14px">{title}</h2>
+      {note && <div style="font-size:14px;line-height:1.6;color:#8B96AD">{note}</div>}
+    </div>
+    <div class="os-faq" data-os-faq>
+      {items.map((it) => (
+        <div class="os-faq__i">
+          <button type="button" class="os-faq__q">{it.q}<span class="os-faq__s">+</span></button>
+          <div class="os-faq__a">{it.a}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

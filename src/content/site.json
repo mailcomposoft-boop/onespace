@@ -1,0 +1,156 @@
+{
+  "blog": {
+    "title": "Блог",
+    "description": "Как мы строим рабочий контур компании: практика, кейсы и разборы."
+  },
+  "phone": "8 800 500-79-34",
+  "phone_href": "tel:88005007934",
+  "email": "info@compo.ru",
+  "form_endpoint": "",
+  "nav": [
+    {
+      "label": "Единый контур",
+      "href": "/"
+    },
+    {
+      "label": "Проекты и маржа",
+      "href": "/proekty-i-marzha"
+    },
+    {
+      "label": "Регламенты и знания",
+      "href": "/reglamenty-i-znaniya"
+    },
+    {
+      "label": "AI без утечки",
+      "href": "/ai-bez-utechki"
+    },
+    {
+      "label": "Документы и медиа",
+      "href": "/dokumenty-i-media"
+    }
+  ],
+  "about": [
+    {
+      "label": "О компании",
+      "href": "/about",
+      "hint": "«Компо Софт» с 2011 года, более 300 проектов"
+    },
+    {
+      "label": "Контакты",
+      "href": "/contacts",
+      "hint": "Москва · 8 (800) 500-79-34"
+    }
+  ],
+  "products": [
+    {
+      "label": "B2B/B2C платформа",
+      "href": "https://www.compo.ru/services/wholesale-automation/"
+    },
+    {
+      "label": "PIM",
+      "href": "https://www.compo.ru/products/pim/"
+    },
+    {
+      "label": "DAM",
+      "href": "https://www.compo.ru/products/dam/"
+    },
+    {
+      "label": "MDM",
+      "href": "https://www.compo.ru/products/mdm/"
+    },
+    {
+      "label": "SRM",
+      "href": "https://www.compo.ru/services/goods-management/"
+    }
+  ],
+  "tools": [
+    {
+      "label": "Калькулятор выгоды",
+      "href": "/proekty-i-marzha#instrument"
+    },
+    {
+      "label": "Сравнение со своим стеком",
+      "href": "/#stack"
+    }
+  ],
+  "addresses": [
+    "Москва, ул. Бауманская, 6с2, офис 802, БЦ «Виктория Плаза»",
+    "Фактический и юридический адрес: 105066, г. Москва, ул. Нижняя Красносельская, д. 35, стр. 64, этаж 8, помещение I, комната 22"
+  ],
+  "badges": [
+    {
+      "label": "Единый реестр отечественного ПО",
+      "href": "https://reestr.digital.gov.ru/reestr/1864611/"
+    },
+    {
+      "label": "АРПП «Отечественный софт»",
+      "href": "https://arppsoft.ru/members/10091/"
+    },
+    {
+      "label": "Сколково",
+      "href": "https://sk.ru/"
+    },
+    {
+      "label": "Sber 500",
+      "href": ""
+    },
+    {
+      "label": "Бренд года в России 2024",
+      "href": ""
+    }
+  ],
+  "privacy_url": "https://www.compo.ru/uploads/Privacy_policy(compo).pdf",
+  "agreement_url": "https://www.compo.ru/uploads/User_agreement(compo).pdf",
+  "consent_url": "https://www.compo.ru/uploads/GDPR.pdf",
+  "legal": [
+    "© 2011–2026, ООО «Компо Софт». Все права защищены.",
+    "ИНН 7726677170 · ОКВЭД 62.01 — разработка компьютерного программного обеспечения. Дополнительные виды деятельности: 62.09, 63.11",
+    "Коды Минцифры (в соотв. с Приказом №449 от 11.05.2023): 1.01, 1.02, 1.05, 1.06, 2.01, 3.01, 4.01, 9.01",
+    "Compo B2B Platform — свидетельство о государственной регистрации №2021617878"
+  ],
+  "nav_extra": [
+    {
+      "label": "Блог",
+      "href": "/blog"
+    }
+  ],
+  "header_cta": {
+    "label": "Оставить заявку",
+    "action": "popup:consult",
+    "url": ""
+  },
+  "popups": [
+    {
+      "id": "demo",
+      "kicker": "Демо",
+      "title": "Покажем OneSpace на ваших задачах",
+      "text": "Демо на нашем собственном рабочем контуре — с живыми проектами и данными, по NDA. Подберём удобное время.",
+      "form_name": "Попап · Демо",
+      "success": "Свяжемся в течение рабочего дня и предложим время для демо."
+    },
+    {
+      "id": "pilot",
+      "kicker": "Пилот",
+      "title": "Обсудим пилот на одном процессе",
+      "text": "Выберем модуль под самую острую задачу и развернём его в вашем контуре на 2–4 недели.",
+      "form_name": "Попап · Пилот",
+      "success": "Свяжемся в течение рабочего дня и пришлём план пилота."
+    },
+    {
+      "id": "calc",
+      "kicker": "Точный расчёт",
+      "title": "Посчитаем выгоду под вашу компанию",
+      "text": "Учтём стоимость лицензии, нужные модули и реальную структуру расходов.",
+      "form_name": "Попап · Расчёт",
+      "success": "Пришлём расчёт в течение рабочего дня."
+    },
+    {
+      "id": "consult",
+      "kicker": "Заявка",
+      "title": "Обсудим вашу задачу",
+      "text": "Оставьте контакты — вернёмся в течение рабочего дня.",
+      "form_name": "Попап · Консультация",
+      "success": "Свяжемся в течение рабочего дня."
+    }
+  ]
+}

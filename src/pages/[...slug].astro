@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import BlockRenderer from '../components/BlockRenderer.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages', ({ data }) => !data.draft);
+  return pages.map((entry) => ({
+    params: { slug: entry.id === 'index' ? undefined : entry.id },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { seo, blocks, form_name, title } = entry.data;
+
+// в браузерный скрипт уходят только данные для табов и калькулятора
+const shots = blocks.find((b) => b.type === 'shots');
+const calc = blocks.find((b) => b.type === 'calc');
+const pageData = {
+  shots: shots ? shots.items : [],
+  calc: calc ? { segments: calc.segments || [], defaults: calc.defaults || {} } : null
+};
+const active = entry.id === 'index' ? '/' : '/' + entry.id;
+---
+<Base seo={seo} active={active} pageData={pageData}>
+  <BlockRenderer blocks={blocks} formName={form_name || title} />
+</Base>

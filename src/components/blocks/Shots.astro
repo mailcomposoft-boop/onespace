@@ -1,0 +1,35 @@
+---
+const { title, caption_prefix = 'onespace', items = [] } = Astro.props;
+const first = items[0] || {};
+const withImages = items.filter((i) => i.image).length > 0;
+---
+<section class="os-sec os-reveal" data-block="05" data-os-shots>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:28px;flex-wrap:wrap">
+    <div>
+      <div class="os-kicker">Интерфейс</div>
+      <h2 class="os-h2" style="margin:0;max-width:24ch">{title}</h2>
+    </div>
+    <div class="os-tabs" data-os-shots-tabs></div>
+  </div>
+
+  <div class="os-shot">
+    <div class="os-shot__frame">
+      <div class="os-shot__bar">
+        <span class="os-shot__dot"></span><span class="os-shot__dot"></span><span class="os-shot__dot"></span>
+        <span class="os-shot__cap" data-os-shots-cap>{caption_prefix} / {(first.label || '').toLowerCase()}</span>
+      </div>
+      <div class="os-shot__imgs" data-os-shots-imgs>
+        {withImages
+          ? items.map((it, i) => (
+              <img class:list={[{ 'is-on': i === 0 }]} data-os-shots-img src={it.image || items.find((x) => x.image).image} alt={it.title} loading={i === 0 ? 'eager' : 'lazy'} />
+            ))
+          : (
+            <div class="os-shot__ph" data-os-shots-img>
+              <span class="os-shot__phtext">Скриншот интерфейса<br />загружается в CMS</span>
+            </div>
+          )}
+      </div>
+    </div>
+    <div class="os-shot__side" data-os-shots-side></div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+// Сопоставление типа блока из CMS с компонентом.
+// Новый тип блока: компонент в blocks/ + строка здесь + описание полей в public/admin/config.yml
+import Hero from './blocks/Hero.astro';
+import Problem from './blocks/Problem.astro';
+import Solution from './blocks/Solution.astro';
+import Pilot from './blocks/Pilot.astro';
+import Shots from './blocks/Shots.astro';
+import Stack from './blocks/Stack.astro';
+import Calculator from './blocks/Calculator.astro';
+import Steps from './blocks/Steps.astro';
+import Faq from './blocks/Faq.astro';
+import LeadForm from './blocks/LeadForm.astro';
+import Text from './blocks/Text.astro';
+
+const BLOCKS = {
+  hero: Hero, problem: Problem, solution: Solution, pilot: Pilot, shots: Shots,
+  stack: Stack, calc: Calculator, steps: Steps, faq: Faq, form: LeadForm, text: Text
+};
+const { blocks = [], formName = '' } = Astro.props;
+---
+{blocks.map((b) => {
+  const C = BLOCKS[b.type];
+  if (!C) return null;
+  return b.type === 'form' ? <C {...b} formName={formName} /> : <C {...b} />;
+})}

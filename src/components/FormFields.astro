@@ -1,0 +1,35 @@
+---
+// Поля формы заявки. Используется в блоке «Форма заявки» и во всех попапах.
+import site from '../content/site.json';
+const { kicker = '', formName = '', success = '' } = Astro.props;
+---
+<div class="os-form" data-os-form data-os-form-name={formName || kicker}>
+  <div data-os-formbody>
+    {kicker && <div class="os-form__cap">{kicker}</div>}
+    <label><span class="os-form__lb">Имя</span><input type="text" name="name" placeholder="Как к вам обращаться" autocomplete="name" /></label>
+    <label><span class="os-form__lb">Компания</span><input type="text" name="company" placeholder="Название компании" autocomplete="organization" /></label>
+    <label><span class="os-form__lb">Телефон</span><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" /></label>
+    <label><span class="os-form__lb">Email</span><input type="email" name="email" placeholder="name@company.ru" autocomplete="email" /></label>
+    <label><span class="os-form__lb">Что хотите обсудить</span><input type="text" name="task" placeholder="Коротко о задаче" /></label>
+
+    <div class="os-consents">
+      <label class="os-consent">
+        <input type="checkbox" data-os-consent-data />
+        <span>Согласен с <a href={site.privacy_url} target="_blank">политикой обработки персональных данных</a> <span style="color:#D64545">*</span></span>
+      </label>
+      <label class="os-consent">
+        <input type="checkbox" />
+        <span>Хочу получать материалы и новости о продукте по email</span>
+      </label>
+    </div>
+
+    <button type="button" class="os-submit" data-os-submit>Отправить</button>
+    <div class="os-err" data-os-err></div>
+  </div>
+
+  <div class="os-sent" data-os-sent>
+    <div class="os-sent__i">✓</div>
+    <div style="font-family:'Manrope',sans-serif;font-size:20px;font-weight:700;margin-bottom:10px">Заявка отправлена</div>
+    <div style="font-size:14px;line-height:1.6;color:#5B6B8C">{success}</div>
+  </div>
+</div>

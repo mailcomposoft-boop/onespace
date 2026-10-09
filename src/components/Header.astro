@@ -1,0 +1,52 @@
+---
+import site from '../content/site.json';
+import { linkHref } from '../lib/link.js';
+const cta = site.header_cta || { label: 'Оставить заявку', action: 'popup:consult' };
+const ctaHref = linkHref(cta.action, cta.url, '#popup:consult');
+const { active = '' } = Astro.props;
+---
+<header class="cs-hdr" id="csHeader">
+  <div class="cs-hdr__in">
+    <a class="cs-hdr__logo" href="/"><img src="/images/compo-logo.png" alt="Compo" /></a>
+
+    <nav class="cs-hdr__nav">
+      {site.nav.map((n) => (
+        <a class:list={['cs-hdr__link', { 'is-active': n.href === active }]} href={n.href}>
+          <span class="cs-hdr__dot"></span>{n.label}
+        </a>
+      ))}
+      {(site.nav_extra || []).map((n) => (
+        <a class:list={['cs-hdr__link', { 'is-active': active.startsWith(n.href) }]} href={n.href}>
+          <span class="cs-hdr__dot"></span>{n.label}
+        </a>
+      ))}
+      <div class="cs-hdr__drop" id="csDrop">
+        <button class="cs-hdr__dropbtn" type="button">О нас <span class="cs-hdr__caret">▾</span></button>
+        <div class="cs-hdr__panel">
+          <div class="cs-hdr__panelin">
+            {site.about.map((a) => (
+              <a class="cs-hdr__item" href={a.href}>
+                <span class="cs-hdr__itemt">{a.label}</span>
+                <span class="cs-hdr__itemd">{a.hint}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <a class="cs-hdr__cta" href={ctaHref}>{cta.label}</a>
+
+    <button class="cs-hdr__burger" type="button" id="csBurger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="cs-hdr__mob">
+    {site.nav.map((n) => <a href={n.href}>{n.label}</a>)}
+    {(site.nav_extra || []).map((n) => <a href={n.href}>{n.label}</a>)}
+    <div class="cs-hdr__mobcap">О нас</div>
+    {site.about.map((a) => <a href={a.href}>{a.label}</a>)}
+    <a class="cs-hdr__mobcta" href={ctaHref}>{cta.label}</a>
+  </div>
+</header>
