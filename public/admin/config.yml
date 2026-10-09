@@ -103,7 +103,11 @@ collections:
                 default: none
                 options:
                   - { label: "Нет / картинка ниже", value: none }
-                  - { label: "AI-ассистент (свёрстана кодом)", value: ai }
+                  - { label: "Единый контур: 8 сервисов → 1 (кодом)", value: stack }
+                  - { label: "Проекты и маржа: канбан и бюджет (кодом)", value: kanban }
+                  - { label: "Регламенты и знания: дерево wiki (кодом)", value: wiki }
+                  - { label: "AI-ассистент (кодом)", value: ai }
+                  - { label: "Документы и медиа: медиабанк (кодом)", value: files }
               - { label: "Картинка справа", name: image, widget: image, required: false, hint: "Если графика кодом не выбрана" }
 
           - label: "Проблема — 3 карточки"
@@ -123,10 +127,11 @@ collections:
           - label: "Решение — текст и карточки"
             name: solution
             widget: object
-            summary: "Решение · {{fields.title}}"
+            summary: "{{fields.kicker}} · {{fields.title}}"
             fields:
+              - { label: "Надзаголовок", name: kicker, widget: string, default: "Решение" }
               - { label: "Заголовок", name: title, widget: string }
-              - { label: "Текст", name: text, widget: text }
+              - { label: "Текст", name: text, widget: text, required: false }
               - { label: "Плашка", name: callout, widget: text, required: false }
               - label: "Карточки"
                 name: items

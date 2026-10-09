@@ -1,5 +1,9 @@
 ---
 import HeroAi from '../graphics/HeroAi.astro';
+import HeroStack from '../graphics/HeroStack.astro';
+import HeroKanban from '../graphics/HeroKanban.astro';
+import HeroWiki from '../graphics/HeroWiki.astro';
+import HeroFiles from '../graphics/HeroFiles.astro';
 import { linkHref } from '../../lib/link.js';
 
 const {
@@ -8,7 +12,7 @@ const {
   cta_secondary, cta_secondary_action = '#instrument', cta_secondary_url = ''
 } = Astro.props;
 // Графика справа: свёрстанная кодом (по ключу) или картинка из CMS
-const GRAPHICS = { ai: HeroAi };
+const GRAPHICS = { ai: HeroAi, stack: HeroStack, kanban: HeroKanban, wiki: HeroWiki, files: HeroFiles };
 const Graphic = GRAPHICS[graphic];
 ---
 <section class="os-sec os-sec--first">

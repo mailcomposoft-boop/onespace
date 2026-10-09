@@ -1,12 +1,12 @@
 ---
-const { title, text, callout, items = [] } = Astro.props;
+const { kicker = 'Решение', title, text, callout, items = [] } = Astro.props;
 ---
 <section class="os-sec os-reveal" data-block="03">
   <div class="os-split--solution">
     <div>
-      <div class="os-kicker">Решение</div>
+      <div class="os-kicker">{kicker}</div>
       <h2 class="os-h2" style="max-width:20ch;margin-bottom:20px">{title}</h2>
-      <p style="font-size:16px;line-height:1.65;color:#5B6B8C;margin:0 0 24px;text-wrap:pretty">{text}</p>
+      {text && <p style="font-size:16px;line-height:1.65;color:#5B6B8C;margin:0 0 24px;text-wrap:pretty">{text}</p>}
       {callout && <div class="os-callout">{callout}</div>}
     </div>
     <div class="os-g2">

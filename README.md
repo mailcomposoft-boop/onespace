@@ -27,7 +27,7 @@ src/
     BlockRenderer.astro       тип блока из JSON → компонент
     blocks/                   Hero, Problem, Solution, Pilot, Shots, Stack,
                               Calculator, Steps, Faq, Text, LeadForm
-    graphics/HeroAi.astro     графика первого экрана (кодом, в CMS не правится)
+    graphics/Hero*.astro      графика первого экрана (кодом, в CMS не правится)
     blog/PostCard.astro       карточка статьи
   pages/
     [...slug].astro           все продуктовые страницы, включая главную (index.json)
