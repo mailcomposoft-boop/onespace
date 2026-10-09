@@ -1,0 +1,42 @@
+name: Сборка и выкладка в Yandex Cloud
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
+
+      # Статика → бакет Object Storage (S3-совместимый API Yandex Cloud)
+      - name: Выгрузка в Object Storage
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.YC_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.YC_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ru-central1
+        run: |
+          aws s3 sync dist/ s3://${{ secrets.YC_BUCKET }}/ \
+            --endpoint-url=https://storage.yandexcloud.net \
+            --delete
+
+      # Сброс кэша CDN, чтобы правки появились сразу
+      - name: Сброс кэша CDN
+        env:
+          YC_TOKEN: ${{ secrets.YC_SA_KEY }}
+          CDN_ID: ${{ secrets.YC_CDN_RESOURCE_ID }}
+        run: |
+          if [ -z "$CDN_ID" ]; then echo "CDN не настроен — пропускаю"; exit 0; fi
+          curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash -s -- -i /opt/yc -n
+          echo "$YC_TOKEN" > key.json
+          /opt/yc/bin/yc config set service-account-key key.json
+          /opt/yc/bin/yc cdn cache purge --resource-id "$CDN_ID" --path "/*"
